@@ -289,7 +289,6 @@ public class CalendarUtils {
     /**
      * Write the value of Calendar options
      *
-     * @param context
      * @param uicalendar component
      * @param optionName the name of an option
      * @param values the List values of an option
@@ -347,8 +346,6 @@ public class CalendarUtils {
 
     /**
      * @deprecated  use {@link #calculateZoneId(Object)} instead.
-     * @param usertimeZone
-     * @return
      */
     public static TimeZone calculateTimeZone(Object usertimeZone) {
         return calculateTimeZone(usertimeZone, TimeZone.getDefault());
@@ -356,9 +353,6 @@ public class CalendarUtils {
 
     /**
      * @deprecated  use {@link #calculateZoneId(Object, ZoneId)} instead.
-     * @param usertimeZone
-     * @param defaultTimeZone
-     * @return
      */
     public static TimeZone calculateTimeZone(Object usertimeZone, TimeZone defaultTimeZone) {
         if (usertimeZone != null) {

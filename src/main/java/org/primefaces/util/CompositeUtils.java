@@ -44,10 +44,6 @@ public class CompositeUtils {
 
     /**
      * Attention: This only supports cc:editableValueHolder which target a single component!
-     *
-     * @param context
-     * @param composite
-     * @param callback
      */
     public static void invokeOnDeepestEditableValueHolder(FacesContext context, UIComponent composite,
             final ContextCallback callback) {

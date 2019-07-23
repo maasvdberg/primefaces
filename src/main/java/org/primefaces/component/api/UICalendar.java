@@ -153,7 +153,6 @@ public abstract class UICalendar extends HtmlInputText {
 
     /**
      * date-only pattern
-     * @return
      */
     public String calculatePattern() {
         String pattern = getPattern();

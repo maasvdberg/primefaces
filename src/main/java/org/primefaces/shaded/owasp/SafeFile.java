@@ -48,7 +48,6 @@ import java.util.regex.Pattern;
  *
  * @author Arshan Dabirsiaghi <a href="http://www.aspectsecurity.com">Aspect Security</a>
  * @see https://github.com/ESAPI/esapi-java-legacy
- * @created 2008
  */
 public class SafeFile extends File {
 

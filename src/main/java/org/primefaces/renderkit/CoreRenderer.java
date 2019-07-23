@@ -805,7 +805,6 @@ public abstract class CoreRenderer extends Renderer {
      * @param context the {@link FacesContext}.
      * @param component the widget without actual HTML markup.
      * @param clientId the component clientId.
-     * @throws IOException
      */
     protected void renderDummyMarkup(FacesContext context, UIComponent component, String clientId) throws IOException {
         ResponseWriter writer = context.getResponseWriter();

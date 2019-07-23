@@ -49,7 +49,7 @@ public class WidgetBuilder {
      * @param widgetVar     Name of the client side widget
      * @param id            Client id of the component
      * @param endFunction   If the init script is wrapped by a method and if the endFunction parentheses should be rendered.
-     * @throws IOException
+     *
      * @return              The current instance.
      */
     protected WidgetBuilder init(String widgetClass, String widgetVar, String id, boolean endFunction) throws IOException {
@@ -119,11 +119,6 @@ public class WidgetBuilder {
      * This should only be used internally if the selector is directly used by jQuery on the client.
      * If PFS is used and specified by the user, {@link #attr(java.lang.String, java.lang.String)} should be used
      * as the users have to escape colons like @(myForm\:myId).
-     *
-     * @param name
-     * @param value
-     * @return
-     * @throws IOException
      */
     public WidgetBuilder selectorAttr(String name, String value) throws IOException {
         if (value != null) {

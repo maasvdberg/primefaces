@@ -63,8 +63,6 @@ public class CartesianScales extends AxesScale {
 
     /**
      * Adds a new xAxes as {@link CartesianAxes} data to scales
-     *
-     * @param newXAxesData
      */
     public void addXAxesData(CartesianAxes newXAxesData) {
         xAxes.add(newXAxesData);
@@ -72,8 +70,6 @@ public class CartesianScales extends AxesScale {
 
     /**
      * Adds a new yAxes as {@link CartesianAxes} data to scales
-     *
-     * @param newYAxesData
      */
     public void addYAxesData(CartesianAxes newYAxesData) {
         yAxes.add(newYAxesData);

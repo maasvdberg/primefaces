@@ -858,8 +858,8 @@ public class SearchExpressionFacade {
     }
 
     /**
-     * Checks if the given expression must not be resolved by a {@link SearchExpressionResolver}, before rendering it to the client. e.g. @all or
-     * @none.
+     * Checks if the given expression must not be resolved by a {@link SearchExpressionResolver},
+     * before rendering it to the client. e.g. @all or @none.
      *
      * @param expression The search expression.
      * @return <code>true</code> if it should just be rendered without manipulation or resolving.

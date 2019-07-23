@@ -160,7 +160,6 @@ public class DataListRenderer extends DataRenderer {
      *
      * @param context FacesContext instance
      * @param list    DataList component
-     * @throws IOException
      */
     protected void encodeStrictList(FacesContext context, DataList list) throws IOException {
         ResponseWriter writer = context.getResponseWriter();
@@ -240,7 +239,6 @@ public class DataListRenderer extends DataRenderer {
      *
      * @param context FacesContext instance
      * @param list    DataList component
-     * @throws IOException
      */
     protected void encodeFreeList(FacesContext context, DataList list) throws IOException {
         int first = list.getFirst();

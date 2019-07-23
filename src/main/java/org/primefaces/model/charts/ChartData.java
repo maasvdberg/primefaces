@@ -75,8 +75,6 @@ public class ChartData implements Serializable {
 
     /**
      * Adds a new dataSet as {@link ChartDataSet} data to dataSet option
-     *
-     * @param newDataSet
      */
     public void addChartDataSet(ChartDataSet newDataSet) {
         dataSet.add(newDataSet);

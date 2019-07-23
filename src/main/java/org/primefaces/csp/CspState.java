@@ -64,8 +64,6 @@ public class CspState {
 
     /**
      * Currently the script nonce is user-supplied input, so we have to validate it to prevent header/XSS injections.
-     * @param nonce
-     * @throws FacesException
      */
     private void validate(String nonce) throws FacesException {
         if (LangUtils.isValueEmpty(nonce)) {

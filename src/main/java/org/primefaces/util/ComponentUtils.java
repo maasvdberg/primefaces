@@ -413,9 +413,6 @@ public class ComponentUtils {
     /**
      * Use {@link ComponentTraversalUtils#closestForm(javax.faces.context.FacesContext, javax.faces.component.UIComponent)} instead.
      *
-     * @param context
-     * @param component
-     * @return
      * @deprecated
      */
     @Deprecated

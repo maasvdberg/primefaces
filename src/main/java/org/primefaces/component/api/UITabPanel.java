@@ -376,10 +376,6 @@ public class UITabPanel extends UIPanel implements NamingContainer {
     /**
      * Just call component.setId(component.getId()) to reset all client ids and ensure they will be calculated for the current row, but do not waste
      * time dealing with row state code.
-     *
-     * @param parent
-     * @param iterateFacets
-     * @param restoreChildFacets
      */
     private void restoreDescendantComponentWithoutRestoreState(UIComponent parent, boolean iterateFacets,
                                                                boolean restoreChildFacets) {
@@ -564,8 +560,6 @@ public class UITabPanel extends UIPanel implements NamingContainer {
 
     /**
      * Returns the rowCount of the underlying DataModel.
-     *
-     * @return
      */
     public int getRowCount() {
         return getDataModel().getRowCount();
@@ -573,8 +567,6 @@ public class UITabPanel extends UIPanel implements NamingContainer {
 
     /**
      * Returns the rowCount of the underlying DataModel.
-     *
-     * @return
      */
     public Object getIndexData() {
         if (!getDataModel().isRowAvailable()) {
@@ -685,9 +677,6 @@ public class UITabPanel extends UIPanel implements NamingContainer {
 
     /**
      * Calculates the count value for the given index.
-     *
-     * @param index
-     * @return
      */
     private int calculateCountForIndex(int index) {
         return (index - getOffset()) / getStep();
