@@ -25,6 +25,7 @@ package org.primefaces.component.gmap;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import javax.faces.FacesException;
@@ -140,9 +141,7 @@ public class GMap extends GMapBase {
             else if (eventName.equals("reverseGeocode")) {
                 List<String> addresses = new ArrayList<>();
                 String[] results = params.get(clientId + "_address").split("_primefaces_");
-                for (int i = 0; i < results.length; i++) {
-                    addresses.add(results[i]);
-                }
+                Collections.addAll(addresses, results);
 
                 double lat = Double.parseDouble(params.get(clientId + "_lat"));
                 double lng = Double.parseDouble(params.get(clientId + "_lng"));

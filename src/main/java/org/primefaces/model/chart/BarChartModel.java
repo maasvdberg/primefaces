@@ -24,7 +24,7 @@
 package org.primefaces.model.chart;
 
 import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.EnumMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
@@ -40,7 +40,7 @@ public class BarChartModel extends CartesianChartModel {
 
     @Override
     public void createAxes() {
-        axes = new HashMap<AxisType, Axis>();
+        axes = new EnumMap<>(AxisType.class);
         axes.put(AxisType.X, new CategoryAxis());
         axes.put(AxisType.Y, new LinearAxis());
     }

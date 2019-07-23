@@ -23,19 +23,18 @@
  */
 package org.primefaces.component.panelgrid;
 
-import java.io.IOException;
+import org.primefaces.component.column.Column;
+import org.primefaces.component.row.Row;
+import org.primefaces.renderkit.CoreRenderer;
+import org.primefaces.util.Constants;
+import org.primefaces.util.GridLayoutUtils;
 
 import javax.faces.FacesException;
 import javax.faces.component.UIComponent;
 import javax.faces.component.UIPanel;
 import javax.faces.context.FacesContext;
 import javax.faces.context.ResponseWriter;
-
-import org.primefaces.component.column.Column;
-import org.primefaces.component.row.Row;
-import org.primefaces.renderkit.CoreRenderer;
-import org.primefaces.util.Constants;
-import org.primefaces.util.GridLayoutUtils;
+import java.io.IOException;
 
 public class PanelGridRenderer extends CoreRenderer {
 
@@ -264,9 +263,15 @@ public class PanelGridRenderer extends CoreRenderer {
                 writer.writeAttribute("class", rowClass, null);
             }
 
-            String columnClass = (colMod < columnClasses.length) ? PanelGrid.CELL_CLASS + " " + columnClasses[colMod].trim() : PanelGrid.CELL_CLASS;
-            if (!columnClass.contains("ui-md-") && !columnClass.contains("ui-g-") && !columnClass.contains("ui-grid-col-")) {
-                columnClass = columnClass + " " + GridLayoutUtils.getColumnClass(columns);
+            final StringBuilder columnClass = new StringBuilder(PanelGrid.CELL_CLASS);
+            if (colMod < columnClasses.length) {
+                columnClass.append(' ');
+                columnClass.append(columnClasses[colMod].trim());
+            }
+
+            if (columnClass.indexOf("ui-md-") == -1 && columnClass.indexOf("ui-g-") == -1 && columnClass.indexOf("ui-grid-col-") == -1) {
+                columnClass.append(' ');
+                columnClass.append(GridLayoutUtils.getColumnClass(columns));
             }
 
             writer.startElement("div", null);

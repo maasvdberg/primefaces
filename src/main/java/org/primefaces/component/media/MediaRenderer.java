@@ -62,7 +62,7 @@ public class MediaRenderer extends CoreRenderer {
             StreamedContent streamedContent = (StreamedContent) value;
             if (streamedContent.getName() != null) {
                 int index = src.indexOf('?');
-                src = src.substring(0, index) + ";/" + streamedContent.getName() + "" + src.substring(index, src.length());
+                src = src.substring(0, index) + ";/" + streamedContent.getName() + src.substring(index);
             }
         }
 

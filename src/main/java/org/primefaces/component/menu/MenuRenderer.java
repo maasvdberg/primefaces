@@ -23,17 +23,16 @@
  */
 package org.primefaces.component.menu;
 
-import java.io.IOException;
-import java.util.List;
-
-import javax.faces.context.FacesContext;
-import javax.faces.context.ResponseWriter;
-
 import org.primefaces.model.menu.MenuElement;
 import org.primefaces.model.menu.MenuItem;
 import org.primefaces.model.menu.Separator;
 import org.primefaces.model.menu.Submenu;
 import org.primefaces.util.WidgetBuilder;
+
+import javax.faces.context.FacesContext;
+import javax.faces.context.ResponseWriter;
+import java.io.IOException;
+import java.util.List;
 
 public class MenuRenderer extends BaseMenuRenderer {
 
@@ -95,11 +94,16 @@ public class MenuRenderer extends BaseMenuRenderer {
                 if (element instanceof MenuItem) {
                     MenuItem menuItem = (MenuItem) element;
                     String containerStyle = menuItem.getContainerStyle();
-                    String containerStyleClass = menuItem.getContainerStyleClass();
-                    containerStyleClass = (containerStyleClass == null) ? Menu.MENUITEM_CLASS : Menu.MENUITEM_CLASS + " " + containerStyleClass;
+                    final StringBuilder containerStyleClass = new StringBuilder(Menu.MENUITEM_CLASS);
+                    if (menuItem.getContainerStyleClass() != null) {
+                        containerStyleClass.append(' ');
+                        containerStyleClass.append(menuItem.getContainerStyleClass());
+                    }
+
 
                     if (toggleable && isSubmenu) {
-                        containerStyleClass = containerStyleClass + " " + Menu.SUBMENU_CHILD_CLASS;
+                        containerStyleClass.append(' ');
+                        containerStyleClass.append(Menu.SUBMENU_CHILD_CLASS);
                     }
 
                     writer.startElement("li", null);

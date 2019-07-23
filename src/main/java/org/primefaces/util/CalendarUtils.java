@@ -305,7 +305,7 @@ public class CalendarUtils {
         writer.write("," + optionName + ":[");
         for (int i = 0; i < values.size(); i++) {
             Object item = values.get(i);
-            Object preText = (i == 0) ? "" : ",";
+            String preText = (i == 0) ? "" : ",";
 
             if (item instanceof Date) {
                 writer.write(preText + "\"" + EscapeUtils.forJavaScript(getValueAsString(context, uicalendar, item)) + "\"");
@@ -314,7 +314,7 @@ public class CalendarUtils {
                 writer.write(preText + "\"" + EscapeUtils.forJavaScript(getValueAsString(context, uicalendar, item)) + "\"");
             }
             else {
-                writer.write(preText + "" + item);
+                writer.write(preText + item);
             }
         }
 

@@ -24,7 +24,7 @@
 package org.primefaces.model.chart;
 
 import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.EnumMap;
 import java.util.List;
 import java.util.Map;
 
@@ -48,7 +48,7 @@ public class CartesianChartModel extends ChartModel {
     }
 
     protected void createAxes() {
-        axes = new HashMap<>();
+        axes = new EnumMap<>(AxisType.class);
         axes.put(AxisType.X, new LinearAxis());
         axes.put(AxisType.Y, new LinearAxis());
     }

@@ -84,7 +84,7 @@ public class MultiSelectListboxRenderer extends SelectOneRenderer {
 
     protected void encodeLists(FacesContext context, MultiSelectListbox listbox, List<SelectItem> itemList) throws IOException {
         ResponseWriter writer = context.getResponseWriter();
-        SelectItem[] items = (itemList == null) ? null : itemList.toArray(new SelectItem[itemList.size()]);
+        SelectItem[] items = (itemList == null) ? null : itemList.toArray(new SelectItem[0]);
         String header = listbox.getHeader();
         String listStyleClass = MultiSelectListbox.LIST_CLASS;
 

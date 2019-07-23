@@ -123,7 +123,7 @@ public class TreeTableRenderer extends DataRenderer {
                         }
                     }
 
-                    tt.setSelection(selectedNodes.toArray(new TreeNode[selectedNodes.size()]));
+                    tt.setSelection(selectedNodes.toArray(new TreeNode[0]));
                 }
 
                 tt.setRowKey(null);     //cleanup

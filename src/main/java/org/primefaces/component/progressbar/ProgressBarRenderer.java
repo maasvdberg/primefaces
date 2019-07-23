@@ -25,6 +25,7 @@ package org.primefaces.component.progressbar;
 
 import java.io.IOException;
 import java.util.Map;
+import java.util.regex.Pattern;
 
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
@@ -35,6 +36,8 @@ import org.primefaces.renderkit.CoreRenderer;
 import org.primefaces.util.WidgetBuilder;
 
 public class ProgressBarRenderer extends CoreRenderer {
+
+    private static final Pattern PATTERN_VALUE_MARKER = Pattern.compile("\\{value\\}");
 
     @Override
     public void decode(FacesContext context, UIComponent component) {
@@ -94,7 +97,7 @@ public class ProgressBarRenderer extends CoreRenderer {
         writer.writeAttribute("class", ProgressBar.LABEL_CLASS, null);
         if (labelTemplate != null) {
             writer.writeAttribute("style", "display:block", style);
-            writer.writeText(labelTemplate.replaceAll("\\{value\\}", String.valueOf(value)), null);
+            writer.writeText(PATTERN_VALUE_MARKER.matcher(labelTemplate).replaceAll(String.valueOf(value)), null);
         }
         writer.endElement("div");
 

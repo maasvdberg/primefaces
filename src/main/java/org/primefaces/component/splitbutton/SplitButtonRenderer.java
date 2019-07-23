@@ -276,11 +276,17 @@ public class SplitButtonRenderer extends OutcomeTargetRenderer {
                 MenuItem menuItem = (MenuItem) element;
                 if (menuItem.isRendered()) {
                     String containerStyle = menuItem.getContainerStyle();
-                    String containerStyleClass = menuItem.getContainerStyleClass();
-                    containerStyleClass = (containerStyleClass == null) ? Menu.MENUITEM_CLASS : Menu.MENUITEM_CLASS + " " + containerStyleClass;
+
+                    final StringBuilder containerStyleClass = new StringBuilder(Menu.MENUITEM_CLASS);
+
+                    if (menuItem.getContainerStyleClass() != null) {
+                        containerStyleClass.append(' ');
+                        containerStyleClass.append(menuItem.getContainerStyleClass());
+                    }
 
                     if (isSubmenu) {
-                        containerStyleClass = containerStyleClass + " " + Menu.SUBMENU_CHILD_CLASS;
+                        containerStyleClass.append(' ');
+                        containerStyleClass.append(Menu.SUBMENU_CHILD_CLASS);
                     }
 
                     writer.startElement("li", null);

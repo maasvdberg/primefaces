@@ -400,15 +400,15 @@ public class SelectOneMenuRenderer extends SelectOneRenderer {
         ValueExpression value = menu.getValueExpression("value");
         Class<?> valueType = value == null ? null : value.getType(context.getELContext());
 
-        for (int i = 0; i < selectItems.size(); i++) {
-            SelectItem selectItem = selectItems.get(i);
+        for (SelectItem selectItem : selectItems) {
             Object itemValue = selectItem.getValue();
             String itemLabel = selectItem.getLabel();
             itemLabel = isValueBlank(itemLabel) ? "&nbsp;" : itemLabel;
 
-            String itemStyleClass = SelectOneMenu.ROW_CLASS;
+            final StringBuilder itemStyleClass = new StringBuilder(SelectOneMenu.ROW_CLASS);
             if (selectItem.isNoSelectionOption()) {
-                itemStyleClass = itemStyleClass + " ui-noselection-option";
+                itemStyleClass.append(' ');
+                itemStyleClass.append("ui-noselection-option");
             }
 
             context.getExternalContext().getRequestMap().put(var, itemValue);
@@ -425,10 +425,8 @@ public class SelectOneMenuRenderer extends SelectOneRenderer {
                 writer.writeAttribute("colspan", columns.size(), null);
                 writer.writeText(selectItem.getLabel(), null);
                 writer.endElement("td");
-            }
-            else {
-                for (int j = 0; j < columns.size(); j++) {
-                    Column column = columns.get(j);
+            } else {
+                for (Column column : columns) {
                     String style = column.getStyle();
                     String styleClass = column.getStyleClass();
 
@@ -452,16 +450,13 @@ public class SelectOneMenuRenderer extends SelectOneRenderer {
     }
 
     protected void encodeOptionsAsList(FacesContext context, SelectOneMenu menu, List<SelectItem> selectItems) throws IOException {
-        for (int i = 0; i < selectItems.size(); i++) {
-            SelectItem selectItem = selectItems.get(i);
-
+        for (SelectItem selectItem : selectItems) {
             if (selectItem instanceof SelectItemGroup) {
                 SelectItemGroup group = (SelectItemGroup) selectItem;
 
                 encodeItem(context, menu, group, SelectOneMenu.ITEM_GROUP_CLASS);
                 encodeOptionsAsList(context, menu, Arrays.asList(group.getSelectItems()));
-            }
-            else {
+            } else {
                 encodeItem(context, menu, selectItem, SelectOneMenu.ITEM_CLASS);
             }
         }

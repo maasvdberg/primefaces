@@ -29,6 +29,8 @@ import java.net.URL;
 import java.net.URLConnection;
 import java.util.Map;
 import java.util.logging.Logger;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import javax.el.ValueExpression;
 import javax.faces.application.Application;
@@ -49,6 +51,9 @@ import org.primefaces.util.WidgetBuilder;
 public class ImageCropperRenderer extends CoreRenderer {
 
     private static final Logger LOGGER = Logger.getLogger(ImageCropperRenderer.class.getName());
+    private static final Pattern PATTERN_RESOURCE = Pattern.compile("^[#][{]resource\\['[^']+'\\][}]$");
+    private static final Pattern PATTERN_RESOURCE_PREFIX = Pattern.compile("^[#][{]resource\\['");
+    private static final Pattern PATTERN_RESOURCE_SUFFIX = Pattern.compile("'\\][}]$");
 
     @Override
     public void decode(FacesContext context, UIComponent component) {
@@ -242,10 +247,10 @@ public class ImageCropperRenderer extends CoreRenderer {
         if (imageValueExpression != null) {
             String imageValueExpressionString = imageValueExpression.getExpressionString();
 
-            if (imageValueExpressionString.matches("^[#][{]resource\\['[^']+'\\][}]$")) {
+            if (PATTERN_RESOURCE.matcher(imageValueExpressionString).matches()) {
 
-                imageValueExpressionString = imageValueExpressionString.replaceFirst("^[#][{]resource\\['", "");
-                imageValueExpressionString = imageValueExpressionString.replaceFirst("'\\][}]$", "");
+                imageValueExpressionString = PATTERN_RESOURCE_PREFIX.matcher(imageValueExpressionString).replaceFirst("");
+                imageValueExpressionString = PATTERN_RESOURCE_SUFFIX.matcher(imageValueExpressionString).replaceFirst("");
                 String resourceLibrary = null;
                 String resourceName;
                 String[] resourceInfo = imageValueExpressionString.split(":");

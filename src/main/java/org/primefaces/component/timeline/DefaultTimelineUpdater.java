@@ -143,7 +143,7 @@ public class DefaultTimelineUpdater extends TimelineUpdater implements PhaseList
                         sb.append("').addEvent(");
                         sb.append(timelineRenderer.encodeEvent(fc, fsw, fswHtml, timeline, browserTZ, targetTZ,
                                 groups, groupFacet, groupsContent, crudOperationData.getEvent()));
-                        sb.append(", " + PREVENT_RENDER + ")");
+                        sb.append(", ").append(PREVENT_RENDER).append(")");
                         renderComponent = true;
                         break;
 
@@ -156,7 +156,7 @@ public class DefaultTimelineUpdater extends TimelineUpdater implements PhaseList
                         sb.append(",");
                         sb.append(timelineRenderer.encodeEvent(fc, fsw, fswHtml, timeline, browserTZ, targetTZ,
                                 groups, groupFacet, groupsContent, crudOperationData.getEvent()));
-                        sb.append(", " + PREVENT_RENDER + ")");
+                        sb.append(", ").append(PREVENT_RENDER).append(")");
                         renderComponent = true;
                         break;
 
@@ -166,7 +166,7 @@ public class DefaultTimelineUpdater extends TimelineUpdater implements PhaseList
                         sb.append(widgetVar);
                         sb.append("').deleteEvent(");
                         sb.append(crudOperationData.getIndex());
-                        sb.append(", " + PREVENT_RENDER + ")");
+                        sb.append(", ").append(PREVENT_RENDER).append(")");
                         renderComponent = true;
                         break;
 

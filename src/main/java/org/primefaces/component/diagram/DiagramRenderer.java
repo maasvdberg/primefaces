@@ -187,7 +187,7 @@ public class DiagramRenderer extends CoreRenderer {
             String hoverPaintStyle = defaultConnector.getHoverPaintStyle();
 
             wb.append(",defaultConnector:").append(defaultConnector.toJS(sb));
-            wb.append(",containment:").append("" + model.isContainment());
+            wb.append(",containment:").append(Boolean.toString(model.isContainment()));
 
             if (paintStyle != null) {
                 wb.append(",paintStyle:").append(paintStyle);
@@ -381,11 +381,18 @@ public class DiagramRenderer extends CoreRenderer {
             if (elements != null && !elements.isEmpty()) {
                 for (int i = 0; i < elements.size(); i++) {
                     Element element = elements.get(i);
-                    String elementClass = element.getStyleClass();
-                    elementClass = (elementClass == null) ? Diagram.ELEMENT_CLASS : Diagram.ELEMENT_CLASS + " " + elementClass;
-                    if (element.isDraggable()) {
-                        elementClass = elementClass + " " + Diagram.DRAGGABLE_ELEMENT_CLASS;
+                    final StringBuilder elementClass = new StringBuilder(Diagram.ELEMENT_CLASS);
+
+                    if (element.getStyleClass() != null) {
+                        elementClass.append(' ');
+                        elementClass.append(element.getStyleClass());
                     }
+
+                    if (element.isDraggable()) {
+                        elementClass.append(' ');
+                        elementClass.append(Diagram.DRAGGABLE_ELEMENT_CLASS);
+                    }
+
                     Object data = element.getData();
                     String x = element.getX();
                     String y = element.getY();

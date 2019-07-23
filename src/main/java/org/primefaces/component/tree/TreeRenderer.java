@@ -102,7 +102,7 @@ public class TreeRenderer extends CoreRenderer {
                     }
                 }
 
-                tree.setSelection(selectedNodes.toArray(new TreeNode[selectedNodes.size()]));
+                tree.setSelection(selectedNodes.toArray(new TreeNode[0]));
             }
 
             tree.setRowKey(null);

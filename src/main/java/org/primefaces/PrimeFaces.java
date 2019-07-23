@@ -51,6 +51,7 @@ import java.util.stream.Collectors;
 public class PrimeFaces {
 
     private static final Logger LOGGER = Logger.getLogger(PrimeFaces.class.getName());
+    private static final Pattern PATTERN_FIRST_SLASH = Pattern.compile("^/*");
 
     // There are 2 possible solutions
     // 1) the current static solution + use Faces/RequestContext#getCurrentInstance each time
@@ -482,7 +483,7 @@ public class PrimeFaces {
 
         private String createMVSViewId(String viewId) {
             // LEGACY: The reason to remove the first / is unknown
-            return viewId.replaceFirst("^/*", Constants.EMPTY_STRING);
+            return PATTERN_FIRST_SLASH.matcher(viewId).replaceFirst(Constants.EMPTY_STRING);
         }
 
         private Map<String, Object> getMVSSessionMap() {

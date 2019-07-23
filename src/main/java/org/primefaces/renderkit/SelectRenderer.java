@@ -314,7 +314,7 @@ public abstract class SelectRenderer extends InputRenderer {
                 oldValues,
                 getSelectItems(context, component),
                 submittedValues);
-        return validSubmittedValues.toArray(new String[validSubmittedValues.size()]);
+        return validSubmittedValues.toArray(new String[00]);
     }
 
     private List<String> doValidateSubmittedValues(

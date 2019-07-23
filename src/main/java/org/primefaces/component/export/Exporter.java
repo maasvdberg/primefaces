@@ -27,6 +27,7 @@ import java.io.IOException;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
@@ -164,7 +165,7 @@ public abstract class Exporter {
                         collection = (List) value;
                     }
                     else if (value.getClass().isArray()) {
-                        collection = Arrays.asList(value);
+                        collection = Collections.singletonList(value);
                     }
                     else {
                         throw new FacesException("Value of " + component.getClientId(context) + " must be a List or an Array.");

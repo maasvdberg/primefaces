@@ -58,7 +58,7 @@ public class XMLExporter extends Exporter {
         }
 
         builder.append("<?xml version=\"1.0\"?>\n");
-        builder.append("<" + table.getId() + ">\n");
+        builder.append("<").append(table.getId()).append(">\n");
 
         if (pageOnly) {
             exportPageOnly(context, table, builder);
@@ -70,7 +70,7 @@ public class XMLExporter extends Exporter {
             exportAll(context, table, builder);
         }
 
-        builder.append("</" + table.getId() + ">");
+        builder.append("</").append(table.getId()).append(">");
 
         table.setRowIndex(-1);
 
@@ -104,12 +104,12 @@ public class XMLExporter extends Exporter {
 
     @Override
     protected void preRowExport(DataTable table, Object document) {
-        ((StringBuilder) document).append("\t<" + table.getVar() + ">\n");
+        ((StringBuilder) document).append("\t<").append(table.getVar()).append(">\n");
     }
 
     @Override
     protected void postRowExport(DataTable table, Object document) {
-        ((StringBuilder) document).append("\t</" + table.getVar() + ">\n");
+        ((StringBuilder) document).append("\t</").append(table.getVar()).append(">\n");
     }
 
     @Override
@@ -153,7 +153,7 @@ public class XMLExporter extends Exporter {
     protected void addColumnValue(StringBuilder builder, List<UIComponent> components, String tag, UIColumn column) throws IOException {
         FacesContext context = FacesContext.getCurrentInstance();
 
-        builder.append("\t\t<" + tag + ">");
+        builder.append("\t\t<").append(tag).append(">");
 
         if (column.getExportFunction() != null) {
             builder.append(EscapeUtils.forXml(exportColumnByFunction(context, column)));
@@ -169,7 +169,7 @@ public class XMLExporter extends Exporter {
             }
         }
 
-        builder.append("</" + tag + ">\n");
+        builder.append("</").append(tag).append(">\n");
     }
 
     protected void configureResponse(ExternalContext externalContext, String filename) {

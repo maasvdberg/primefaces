@@ -33,6 +33,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.regex.Pattern;
 import javax.el.ELException;
 import javax.faces.FacesException;
 import javax.faces.application.ProjectStage;
@@ -61,6 +62,7 @@ public class PrimeExceptionHandler extends ExceptionHandlerWrapper {
 
     private static final Logger LOGGER = Logger.getLogger(PrimeExceptionHandler.class.getName());
     private static final String DATE_FORMAT_PATTERN = "yyyy-MM-dd HH:mm:ss";
+    private static final Pattern PATTERN_NEW_LINES = Pattern.compile("(\r\n|\n)");
 
     private final ExceptionHandler wrapped;
 
@@ -262,7 +264,7 @@ public class PrimeExceptionHandler extends ExceptionHandlerWrapper {
         try (StringWriter sw = new StringWriter()) {
             PrintWriter pw = new PrintWriter(sw);
             rootCause.printStackTrace(pw);
-            info.setFormattedStackTrace(EscapeUtils.forXml(sw.toString()).replaceAll("(\r\n|\n)", "<br/>"));
+            info.setFormattedStackTrace(PATTERN_NEW_LINES.matcher(EscapeUtils.forXml(sw.toString())).replaceAll("<br/>"));
             pw.close();
         }
 

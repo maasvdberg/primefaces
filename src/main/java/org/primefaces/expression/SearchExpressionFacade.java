@@ -854,7 +854,7 @@ public class SearchExpressionFacade {
         // lets not forget about part after the separator
         tokens.add(buffer.toString());
 
-        return tokens.toArray(new String[tokens.size()]);
+        return tokens.toArray(new String[0]);
     }
 
     /**

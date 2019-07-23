@@ -146,9 +146,8 @@ public class MultipartRequest extends HttpServletRequestWrapper {
     }
 
     @Override
-    public Enumeration getParameterNames() {
-        Set<String> paramNames = new LinkedHashSet<>();
-        paramNames.addAll(formParams.keySet());
+    public Enumeration<String> getParameterNames() {
+        Set<String> paramNames = new LinkedHashSet<>(formParams.keySet());
 
         Enumeration<String> original = super.getParameterNames();
         while (original.hasMoreElements()) {
@@ -166,7 +165,7 @@ public class MultipartRequest extends HttpServletRequestWrapper {
                 return new String[0];
             }
             else {
-                return values.toArray(new String[values.size()]);
+                return values.toArray(new String[0]);
             }
         }
         else {

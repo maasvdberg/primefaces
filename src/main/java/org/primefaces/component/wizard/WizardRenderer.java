@@ -121,9 +121,7 @@ public class WizardRenderer extends CoreRenderer {
         writer.write(",steps:[");
         boolean firstStep = true;
         String defaultStep = null;
-        for (Iterator<UIComponent> children = wizard.getChildren().iterator(); children.hasNext(); ) {
-            UIComponent child = children.next();
-
+        for (UIComponent child : wizard.getChildren()) {
             if (child instanceof Tab && child.isRendered()) {
                 Tab tab = (Tab) child;
                 if (defaultStep == null) {
@@ -132,8 +130,7 @@ public class WizardRenderer extends CoreRenderer {
 
                 if (!firstStep) {
                     writer.write(",");
-                }
-                else {
+                } else {
                     firstStep = false;
                 }
 
@@ -233,9 +230,17 @@ public class WizardRenderer extends CoreRenderer {
                 String title = tab.getTitle();
                 UIComponent titleFacet = tab.getFacet("title");
                 boolean active = (!currentFound) && (currentStep == null || tab.getId().equals(currentStep));
-                String titleStyleClass = active ? Wizard.ACTIVE_STEP_CLASS : Wizard.STEP_CLASS;
+                final StringBuilder titleStyleClass = new StringBuilder();
+                if (active) {
+                    titleStyleClass.append(Wizard.ACTIVE_STEP_CLASS);
+                }
+                else {
+                    titleStyleClass.append(Wizard.STEP_CLASS);
+                }
+
                 if (tab.getTitleStyleClass() != null) {
-                    titleStyleClass = titleStyleClass + " " + tab.getTitleStyleClass();
+                    titleStyleClass.append(' ');
+                    titleStyleClass.append(tab.getTitleStyleClass());
                 }
 
                 if (active) {

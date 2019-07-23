@@ -34,6 +34,7 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.regex.Pattern;
 import javax.faces.FacesException;
 import javax.servlet.http.Part;
 
@@ -46,6 +47,8 @@ public class NativeUploadedFile implements UploadedFile, Serializable {
     private static final long serialVersionUID = 1L;
     private static final int DEFAULT_BUFFER_SIZE = 1024 * 4;
     private static final String CONTENT_DISPOSITION_FILENAME_ATTR = "filename";
+    private static final Pattern PATTERN_PERCENT = Pattern.compile("%(?![0-9a-fA-F]{2})");
+    private static final Pattern PATTERN_PLUS = Pattern.compile("\\+");
 
     private Part part;
     private String filename;
@@ -227,8 +230,8 @@ public class NativeUploadedFile implements UploadedFile, Serializable {
     private String decode(String encoded) {
         try {
             // GitHub #3916 escape + and % before decode
-            encoded = encoded.replaceAll("%(?![0-9a-fA-F]{2})", "%25");
-            encoded = encoded.replaceAll("\\+", "%2B");
+            encoded = PATTERN_PERCENT.matcher(encoded).replaceAll("%25");
+            encoded = PATTERN_PLUS.matcher(encoded).replaceAll("%2B");
             return URLDecoder.decode(encoded, "UTF-8");
         }
         catch (UnsupportedEncodingException ex) {

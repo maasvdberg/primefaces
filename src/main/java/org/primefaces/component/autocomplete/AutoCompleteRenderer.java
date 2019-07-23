@@ -419,9 +419,11 @@ public class AutoCompleteRenderer extends InputRenderer {
                 }
 
                 String tokenValue = converter != null ? converter.getAsString(context, ac, itemValue) : String.valueOf(itemValue);
-                String itemStyleClass = AutoComplete.TOKEN_DISPLAY_CLASS;
+
+                final StringBuilder itemStyleClass = new StringBuilder(AutoComplete.TOKEN_DISPLAY_CLASS);
                 if (ac.getItemStyleClass() != null) {
-                    itemStyleClass += " " + ac.getItemStyleClass();
+                    itemStyleClass.append(' ');
+                    itemStyleClass.append(ac.getItemStyleClass());
                 }
 
                 writer.startElement("li", null);
